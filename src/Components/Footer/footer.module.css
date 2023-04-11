@@ -1,0 +1,31 @@
+.footer {
+  width: 100%;
+  height: 500px;
+
+  background: #f5f5f5;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.lilDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+}
+
+.lilDiv p {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 30px;
+
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 33px;
+}
