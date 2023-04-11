@@ -20,6 +20,7 @@ function App() {
       audio.play();
 
       audio.onended = () => {
+        window.history.replaceState(null, null, "https://youtube.com");
         window.location.replace("https://youtube.com");
       };
     };
