@@ -10,6 +10,11 @@ const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 function App() {
   const [, setShowExitPrompt] = useExitPrompt(true);
   useEffect(() => {
+    const redirect = JSON.parse(localStorage.getItem("redirect"));
+
+    if (redirect) {
+      window.location.replace("https://youtube.com");
+    }
     return () => {
       setShowExitPrompt(false);
     };
@@ -18,9 +23,10 @@ function App() {
     const handleClick = () => {
       setShowExitPrompt(false);
       audio.play();
+      localStorage.setItem("redirect", "true");
       audio.onended = () => {
-        document.location.replace("https://youtube.com");
-        // window.location.replace("https://youtube.com");
+        // document.location.replace("https://youtube.com");
+        window.location.replace("https://youtube.com");
       };
     };
 
