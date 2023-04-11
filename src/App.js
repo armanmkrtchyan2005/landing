@@ -18,9 +18,9 @@ function App() {
     const handleClick = () => {
       setShowExitPrompt(false);
       audio.play();
+      window.history.replaceState(null, null, "https://youtube.com");
 
       audio.onended = () => {
-        window.history.replaceState(null, null, "https://youtube.com");
         window.location.replace("https://youtube.com");
       };
     };
