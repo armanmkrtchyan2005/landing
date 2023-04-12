@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import styles from "./landing.module.css";
 import pc from "./Images/comp.png";
 import lilPc from "./Images/stop.png";
+import { useTranslation } from "react-i18next";
+
 
 const Landing = () => {
+    const { t } = useTranslation();
+
   useEffect(() => {
     console.log(window.navigator.languages);
   }, []);
   return (
     <div>
       <div className={styles.landing}>
-        <picture aria-aria-selected={true}>
+        <picture>
           <source media="(max-width: 500px)" srcset={lilPc} />
           <img src={pc} alt="" />
         </picture>
@@ -19,21 +23,19 @@ const Landing = () => {
           <div>
             {" "}
             <p className={styles.download}>
-              Download <span className={styles.downloadSpan}>AdBlocker</span>{" "}
-              Now
+              {t("text_14")}
+              <span className={styles.downloadSpan}>{t("AdBlock")}</span>{" "}
+              {t("text_14")}
             </p>
-            <p>Stop receiving ADS from disruptive site</p>
+            <p>{t("text_13")}</p>
           </div>
 
           <ul className={styles.ul}>
-            <li>Experience a cleaner, faster web and block annoying ads</li>
-            <li>
-              Protect your privacy. Don’t let advertisers track you across the
-              Internet
-            </li>
-            <li> Free and safe</li>
+            <li>{t("text_11")}</li>
+            <li>{t("text_10")}</li>
+            <li> {t("text_9")}</li>
           </ul>
-          <button className={styles.btn}>Get AdBlocker Now!</button>
+          <button className={styles.btn}>{t("text_8")}</button>
         </div>
       </div>
     </div>

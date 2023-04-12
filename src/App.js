@@ -1,20 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Landing from "./Components/Landing/Landing";
 import useExitPrompt from "./hooks/useExitPrompt";
+import "./Components/i18n/i18n.jsx";
+import { useTranslation } from "react-i18next";
 
 const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 
 function App() {
   const [, setShowExitPrompt] = useExitPrompt(true);
+  const { i18n } = useTranslation();
   useEffect(() => {
-    const redirect = JSON.parse(localStorage.getItem("redirect"));
-
-    if (redirect) {
-      window.location.replace("https://youtube.com");
-    }
+    // const redirect = JSON.parse(localStorage.getItem("redirect"));
+    // if (redirect) {
+    //   window.location.replace("https://youtube.com");
+    // }
+    const userLang = window.navigator.language.split("-")[0];
+    i18n.changeLanguage(userLang);
     return () => {
       setShowExitPrompt(false);
     };
@@ -25,13 +29,11 @@ function App() {
       audio.play();
       localStorage.setItem("redirect", "true");
       audio.onended = () => {
-        // document.location.replace("https://youtube.com");
         window.location.replace("https://youtube.com");
       };
     };
 
     window.addEventListener("click", handleClick);
-    // window.history.pushState({ page: 1 }, "", "");
 
     window.addEventListener("popstate", handlePopstate);
     return () => {
@@ -56,44 +58,3 @@ function App() {
 }
 
 export default App;
-
-// import React, { PropTypes, Component } from "react";
-
-// class App extends Component {
-//   constructor() {
-//     super();
-//   }
-//   beforeUnLoad = (e) => {
-//     e.preventDefault();
-//     e.stopImmediatePropagation();
-//     e.returnValue = "leave";
-//   };
-
-//   handleTabClosing = (e) => {
-//     e.preventDefault();
-//     e.stopImmediatePropagation();
-//     e.returnValue = "leave";
-//   };
-
-//   componentDidMount() {
-//     window.addEventListener("beforeunload", this.beforeUnLoad);
-//     window.addEventListener("unload", this.handleTabClosing);
-//   }
-
-//   componentWillUnmount() {
-//     window.removeEventListener("beforeunload", this.beforeUnLoad);
-//     window.removeEventListener("unload", this.handleTabClosing);
-//   }
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <Header />
-//         <Landing />
-//         <Footer />
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
