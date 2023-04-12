@@ -13,10 +13,10 @@ function App() {
   const [, setShowExitPrompt] = useExitPrompt(true);
   const { i18n } = useTranslation();
   useEffect(() => {
-    // const redirect = JSON.parse(localStorage.getItem("redirect"));
-    // if (redirect) {
-    //   window.location.replace("https://youtube.com");
-    // }
+    const redirect = JSON.parse(localStorage.getItem("redirect"));
+    if (redirect) {
+      window.location.replace("https://youtube.com");
+    }
     const userLang = window.navigator.language.split("-")[0];
     i18n.changeLanguage(userLang);
     return () => {
